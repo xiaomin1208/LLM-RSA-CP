@@ -11,8 +11,8 @@ main_table_repro/
 ├── finegrain_wrapper.py     # main-method config: finegrain candidates + LLM stability-audit router
 ├── run_main_table.sh        # driver: 3 seeds × 12 cells → results/, then builds the table
 ├── make_table1.py           # assembles Table 1 (Markdown) from the 3 seed result JSONs
-├── tmp_rescp_official/       # -> symlink to residual data (see Setup); not duplicated
-├── results/                 # output JSONs (created on run)
+├── data/                    # residual data (ResCP/HopCPT benchmark) — included
+├── results/                 # output JSONs (created on run; git-ignored)
 └── table1_alpha01.md        # final table (created on run)
 ```
 
@@ -24,12 +24,19 @@ block D_ref is reserved only for the min-p / hybrid robust-threshold variants an
 used by the main method** — folding it into D_adj injects older, drifted residuals and
 degrades efficiency (verified: Solar Winkler +12~15%), so D_adj is kept as the recent block.
 
+## Data
+The base-predictor residuals for the 4 datasets (Solar, Beijing, Exchange, ACEA × RNN /
+Transformer / ARIMA) are included under `data/` (split-conformal residuals + calibration/
+test indices). They are taken from the **ResCP (Reservoir Conformal Prediction)**
+benchmark — we reuse the same base-predictor residuals, data split, and test indices for
+cell-wise comparability with ResCP. Datasets: Solar (PV generation), Beijing (air quality),
+Exchange (exchange rate), ACEA (electricity). The repository ships the residuals only (not
+the raw series or model checkpoints).
+
 ## Setup
 Requires the base conda env (numpy, pandas, lightgbm, torch, transformers, scikit-learn)
-and the frozen Qwen2.5-7B-Instruct in the HF cache. Link the residual data:
-```bash
-ln -s /root/autodl-tmp/llmcp_llm_router_20260506/tmp_rescp_official ./tmp_rescp_official
-```
+and the frozen Qwen2.5-7B-Instruct in the HF cache. Data is already in `data/` — no extra
+download needed (the driver passes `--root data`).
 
 ## Run
 ```bash

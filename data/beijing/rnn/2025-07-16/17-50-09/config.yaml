@@ -1,0 +1,38 @@
+optimizer:
+  name: Adam
+  hparams:
+    lr: 0.003
+    weight_decay: 0.0
+dataset:
+  name: beijing
+  connectivity:
+    method: identity
+    layout: edge_index
+  splitting:
+    method: temporal
+    val_len: 0.4
+    test_len: 0.2
+window: 24
+horizon: 1
+stride: 1
+delay: 0
+scale_target: true
+add_exogenous: true
+model:
+  name: rnn
+  hparams:
+    hidden_size: 32
+    n_layers: 1
+workers: 0
+num_threads: 1
+epochs: 200
+train_batches: 100
+patience: 100
+batch_size: 32
+grad_clip_val: 5
+apply_scaler: true
+scale_axis: graph
+save_outputs: true
+run:
+  seed: 468029704
+  name: 2025-07-16_17-50-09_468029704

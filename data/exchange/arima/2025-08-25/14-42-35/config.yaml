@@ -1,0 +1,49 @@
+optimizer:
+  name: Adam
+  hparams:
+    lr: 0.003
+    weight_decay: 0.0
+dataset:
+  name: exchange
+  connectivity:
+    method: identity
+    threshold: 0.1
+    include_self: false
+    layout: edge_index
+  splitting:
+    method: temporal
+    val_len: 0.4
+    test_len: 0.2
+window: 30
+horizon: 1
+stride: 1
+delay: 7
+scale_target: true
+add_exogenous: true
+model:
+  name: arima
+  hparams:
+    order:
+    - 3
+    - 1
+    - 3
+    seasonal_order:
+    - 0
+    - 0
+    - 0
+    - 0
+    enforce_stationarity: true
+    enforce_invertibility: true
+epochs: 200
+train_batches: 100
+patience: 50
+workers: 0
+num_threads: 1
+batch_size: 32
+grad_clip_val: 5
+apply_scaler: true
+scale_axis: graph
+save_outputs: true
+run:
+  seed: 612798363
+  name: 2025-08-25_14-42-35_612798363

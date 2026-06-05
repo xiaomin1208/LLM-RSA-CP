@@ -8,7 +8,7 @@ export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 NUMEXPR_NUM_TH
 PY=${PY:-/root/miniconda3/bin/python}
 
 # Main-method config (identical to the paper): finegrain candidates + frozen-LLM stability-audit router.
-C="--cells full12 --use-llm-candidate-router --llm-device cuda --llm-max-new-tokens 120 \
+C="--cells full12 --root data --use-llm-candidate-router --llm-device cuda --llm-max-new-tokens 120 \
    --allow-llm-fallback --keep-llm-loaded --n-jobs 1 --router-prompt-variants 3 \
    --router-bootstrap-samples 0 --selector-mode sel_winkler_targetcov \
    --selector-over-tol 0.005 --selector-over-penalty 300 --router-mode stability_audit"
