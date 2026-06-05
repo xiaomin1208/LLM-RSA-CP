@@ -1,0 +1,9 @@
+tmp_rescp_official
+__pycache__/
+*.pyc
+logs/
+*.log
+make_err.txt
+_t1.b64
+results/*.json
+table1_alpha01.md
