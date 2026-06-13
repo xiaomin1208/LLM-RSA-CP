@@ -46,6 +46,7 @@ python make_table1.py results > table1_alpha01.md
 ```
 
 ## Output
-`table1_alpha01.md` — Table 1 with the LLM-RSA-CP column as mean±std over 3 seeds,
-Winkler-best per cell bolded among coverage-valid methods. Baseline columns are the
-ResCP same-protocol values (embedded in `make_table1.py`).
+`table1_alpha01.md` — the LLM-RSA-CP metrics (ΔCov / PI-Width / Winkler) per cell as
+mean±std over the 3 seeds, computed at run time from the result JSONs. No numbers are
+pre-filled in the repo: baseline comparison values are not included — pull them from the
+respective baselines' own reports when assembling the paper table.
