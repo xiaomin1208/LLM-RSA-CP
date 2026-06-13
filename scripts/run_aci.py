@@ -1466,6 +1466,8 @@ def aci_interval_metrics(test_y, test_mask, low, high, width, adj_scores, alpha,
 
 def evaluate_cell(cell, residual_path, target, args):
     t0 = time.time()
+    if not target:
+        target = {"dcov_abs": float("nan"), "width": float("nan"), "winkler": float("nan")}
     calibration_alpha = args.alpha if args.calibration_alpha is None else float(args.calibration_alpha)
     data = split_residuals_and_features(residual_path, 0.5, 0.2, 0.15)
     cal_seq = np.concatenate([data["fit_y"], data["sel_y"], data["ref_y"], data["adj_y"]], axis=0)
